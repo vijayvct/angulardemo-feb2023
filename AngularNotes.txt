@@ -1,0 +1,282 @@
+Angular Training 
+----------------
+
+What is Angular?
+----------------
+Angular is UI Development Framework or Platform for developing simple and complex application 
+It is a client-side techology 
+It is build using Typescript 
+It is used to build SPA(Single Page Application)
+It is Component-Based Framework
+It provides a collection of well-intergrated libraries that cover a wide varieties of features including routing, form management , client-server communication and more....
+
+Traditional Web Application
+---------------------------
+E-Commerce - Asp.Net Web Form 
+
+	Index.aspx :- http://mysite/index.aspx
+	About.aspx
+	ProductCatalog.aspx
+	Contact.aspx.......
+
+
+Version of Angular 
+------------------
+Angular JS - 1.x (Javascript)
+
+Angular 2 - Typescript
+Angular 4
+Angular 5,.......
+Angular 14
+
+Core Building Block of Angular 
+------------------------------
+Modules
+Component 
+	-Class(Typescript Class)
+		properties
+		method 
+	-Template (HTML Code)
+	-Meta Data(Extra data for the component)
+Services 
+Directives 
+Pipes
+Routing
+
+Software Requirement 
+--------------------
+NodeJS and NPM
+Visual Studio Code 
+
+Installing Angular CLI 
+----------------------
+node --version 
+
+npm -version	
+
+npm install -g @angular/cli
+
+ng --help or help :- to see all the possible options 
+
+ng version :- to view the version of angular cli installed 
+
+creating a new angular project 
+
+Navigate to directory where you want yo keep all the projects 
+
+ng new <<name-of-the-project>>
+
+ng new demo-angularapp
+
+cd demo-angularapp
+
+to run the application 
+
+	ng serve or npm start 
+	
+	ng serve - to start the local development server and host the angular application 
+	
+	ng serve -o - to start the application on the local server and launch the application in the default browser
+	
+	ng serve --port 5500
+	
+Components
+----------
+Component are the building block of angular application 
+
+Each Component has the following artifacts by default:
+
+-The Component Class (Typescript Class)
+
+	<<component-name>>.component.ts
+	
+	Root Component is knows as app.component.ts
+	
+	Product List Component - productlist.component.ts
+	
+	Register Component - register.component.ts
+	
+-The Component's Template (View)
+
+	<<component-name>>.component.html 
+	
+	Root Component :- app.component.html 
+	
+	ProductList Component - productlist.component.html 
+	
+-The Component's Stylesheet 
+	
+	<<component-name>>.component.css
+	
+	Root Component :- app.component.css
+	
+-The Component's Unit testing code 
+	
+	<<component-name>>.component.spec.ts
+	
+	Root Component :- app.component.spec.ts
+	
+The Module Class 
+----------------
+Every Module is a Typescript class 
+The class is decorated with @NgModule decorator 
+Root Module is app.module.ts
+
+Bootstrapping 
+-------------
+Bootstrapping is a technique of initializing or loading an Angular Application 
+
+The Angular takes the following steps to load the application 
+
+1.Loads Index.html 
+2.Angular, Third-party libraries and Application Loads 
+3.Main.ts the application entry point 
+4.Root Module Executes 
+5.Root Component Execute 
+6.Template get rendered 
+
+runtime.js - WebPack runtime 
+
+WebPack :- It is a bundler. It scans the application looking for javascript files and merges them into one to more big files. It has the ability bundles any kind of files like Javascript, Css etc
+
+polyfill.js :- It has script for supporting variety of latest modern browsers
+
+styles.js :- This file contains the global style rule bundled as javascript file
+
+vendor.js :- Contains the scripts from the Angular core library and other third party libraries 
+
+main.js :- code to application 
+
+Creating Components 
+-------------------
+Manual Approach :- You create all the class and other related files for the component manually 
+
+Angular CLI :- You can create component and related files using the Angular CLI 
+
+	ng generate --help :- shows the help for the command 
+	
+	ng generate component <<component-name>>
+	
+	ng g c <<component-name>>
+
+	ng generate component login : create a login component with all the files in a folder
+	
+	ng g c about : creates a about component without test logic in the app root folder
+	
+	ng g c register --skip-tests --inline-template --inline-style
+
+Component
+---------	
+	
+Component Class - Typescript Class 
+
+Decorator :- A decorater is used in angular to make a typescript behave as different angular features.
+
+	@Component Decorator 
+		selector :- A tag name given to a component which can be used in the html code 
+		
+		Template URL :- path to the html code 
+			or 
+		Template :- inline html code 
+		
+		Style URL :- path to css file 
+			or 
+		Styles :- Css Code 
+		
+Angular Data Binding 
+--------------------
+Data Binding is a technique , where data stays in-sync between the component (TS class) and the view (HTML)
+Whenever the user updates the data in the view, Angular updates the component or Vice Versa 
+
+One-Way Binding 
+---------------
+In this approach the data flow in one direction , Component to View 
+To Implement One-Way data binding we use interpolation 
+
+Interpolation allows us to include an expression as part of a string literal enclose in double curly brackets {{ stringliteral }}
+
+The angular evaluates the expression in the string literal and replace the string literal with the actual value that you wante to display in the view 
+
+export class AppComponent{
+
+	title="Angular Application"
+	message ="Welcome to Angular"
+}
+
+interpolation --> {{ expression }}
+
+	<h2>{{ title }}</h2>
+	<p>{{ message }}</p>
+	
+Install Bootstrap 
+-----------------
+npm install --save bootstrap 
+
+Two-Way Binding
+---------------
+Two-Way data binding means that changes made to our model in the component are propogated to the view and any changes made in the view are immediately updated in the model 
+Two-Way data binding is useful in forms
+Angular used ngModel directive to achieve Two-Way data binding 
+
+name = "Malcolm"
+
+Employee Name : <input type="text" [(ngModel)]="name">
+
+ngModel is a part of FormsModule and to use it we have register the FormsModule inside the root module of our angular application
+
+Event Binding 
+-------------
+Event Binding allows us to bind events such as click, keystroke, hover etc 
+
+Javascript :- <button onclick="functionname()">Click Me</button>
+
+Angular :- <button (click)="functionname()">Click Me</button>
+
+We can pass $event object to an event handler to get additional information about the event
+
+<button (click)="methodname($event)">Click Me</button>
+
+$event object contains all the information about the event 
+
+It it's a DOM element,$event contains the information about DOM element 
+It it's a Component, $event contains the information about the Component
+
+.target property :- helps to get the information about the target 
+
+Can we use same event handler with multiple elements ? Yes
+
+Events can be raised by Components
+	-EventEmitter<T>
+	
+Template Reference Variables
+----------------------------
+Template Reference variables helps you use data from one part of the template in another part of the same template.
+Use Template reference variables to perform tasks such as respond to input or finely tune your application forms 
+
+A Template reference variable can refer to the following 
+	-A DOM Element with in a template 
+	-A Directive or Component 
+	-A TemplateRef from ng-template 
+	-A Web Component 
+	
+<element #variablename></element>
+
+<input type="text" #city>
+
+Component Communication 
+-----------------------
+
+	Parent--->Child 
+		Parent Component Passes data to child component 
+		@Input Decorator
+		Root->BookList-->Book
+		
+		a.In the child compoent , create a data member and decorate it with the @input decorator 
+			@input---> @angular/core
+		b.From the parent component, when rendering the chidl component pass data to the markup of the child component by using the property binding syntax
+		
+			<element [property]="value">
+		3.The child component can use the member marked with the @Input decoratpr to access the data passed by Parent Component
+		
+	Child---->Parent 
+		Child Component passes data back to parent component 
