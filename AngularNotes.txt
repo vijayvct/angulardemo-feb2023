@@ -273,10 +273,93 @@ Component Communication
 		
 		a.In the child compoent , create a data member and decorate it with the @input decorator 
 			@input---> @angular/core
-		b.From the parent component, when rendering the chidl component pass data to the markup of the child component by using the property binding syntax
+		b.From the parent component, when rendering the child component pass data to the markup of the child component by using the property binding syntax
 		
 			<element [property]="value">
-		3.The child component can use the member marked with the @Input decoratpr to access the data passed by Parent Component
+		3.The child component can use the member marked with the @Input decorator to access the data passed by Parent Component
 		
 	Child---->Parent 
 		Child Component passes data back to parent component 
+		@Output Decorator 
+		EventEmitter<T> Class (Notification)
+		
+		1.In the child component , create an instance of the EventEmitter<T> class and specify the type of data to be passed to the parent 
+		
+		2.Decorate the datamember with the @Output decorator 
+			@Output allows parent component to receive notification and respond to it 
+		
+		3.Emit the custom event from the child component using the emit method of EventEmitter<T> class
+		
+		4.In the parent component template, use event binding syntax so that the parent can attach an event handler to the custom notification fired by the child component 
+		
+Directives
+----------
+Directives are classes that add additional behaviour to elements in your Angular application
+It helps us to manipulates DOM
+You can change the apperance , behaviour or layout of the DOM elements using the directives 
+They help you to your HTML
+
+Built-In Directive 
+------------------
+Component Directive 
+	They are directive with a template view for a component 
+	
+Structural Directive 
+	These Directives can change the DOM layout by adding or removing DOM elements 
+	
+	ngIf - *ngIf
+	
+		<element *ngIf="condition">....</element>
+		
+	ngSwitch
+		*ngSwitchCase - to specify cases
+		*ngSwitchDefault - to specify the default case
+		
+		<div [ngSwitch]="num">
+			<div *ngSwitchCase="1">One</div>
+			<div *ngSwitchCase="2">Two</div>
+			.
+			.
+			.
+			.
+			<div *ngSwitchDefault>Default Message</div>
+		</div>
+	
+	ngFor
+		<element *ngFor="let variable of collection/array">
+			{{ variable }}
+		</element>
+		
+		"variable" is know as "template input variable"
+			scope is only within <element>
+			
+		*ngFor Variables 
+		
+		index: contains the zero based index of item being iterated
+		
+		<element *ngFor="let b of books;let i=index"></element>
+		
+		odd : returns true if the item is an odd item 
+		
+		even: returns true if the item is an even item 
+		
+		trackBy:function 
+			Tells Angular how each item in the collection must be tracked. Without trackBy, Angular re-renders the entire DOM tree even if the data is not change
+		
+		a.Create a function which returns a unique value from the model, which angular will use to track each item 
+			eg:- eid,pid,bookid etc
+			
+		b.Use the trackBy Property with *ngFor and specify the name of the tracking function created
+		
+		if the data changes , the existing DOM element will be not re-rendered and only the new DOM elements would be added to the DOM tree
+
+Attribute Directive 
+
+	ngModel
+	ngStyle 
+	ngClass
+	
+Creating Custom Directive 
+-------------------------
+a.Creating a custom attribute directive 
+b.Creating a custom structural directive 
