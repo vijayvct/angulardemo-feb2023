@@ -363,3 +363,244 @@ Creating Custom Directive
 -------------------------
 a.Creating a custom attribute directive 
 b.Creating a custom structural directive 
+
+	First decide, what tha custom directive is supposed to do?
+	
+	Example :-
+		AlertDirective (directive class)
+			<element [alert]></element>
+			
+		When applied to an HTML Element, it must display an alert message
+		
+		<p [alert]>Hello</p>
+		<span [alert]>Welcome</p>
+
+	Inside the custom directive , we can respond to the event of the HOST Element
+	
+a.Creating a Custom attribute directive 
+
+	1.Create a TS class and decorate it with @Directive() decorator 
+	2.Declare the directive in the declaration section of the AppModule
+	3.Use the directive in the component's template
+	
+	Angular CLI --> ng generate directive <<directivename>
+						or 
+					ng g d <<directivename>> --skip-tests
+					
+	Inside the custom directive , we can respond to the event of the HOST Element
+	
+	a.Inside the directive , create a handler function 
+	b.Decorate it with @HostListener() decorate and specify the DOM event 
+	
+	A custom directive can be applied to a DOM element as well as to custom component
+	
+	Accessing the HOST element from within the directive 
+		To change the behaviour of the HOST element
+		Inject the ElementRef service into the directive class 
+		
+	<p appAlert>...</p>
+	
+	Just like components, directive can also have input properties(marked with @Input())
+	
+	<p appAlert inputmessage="Welcome"></p>
+	
+	<p appAlert inputmessage="Hello"></p>
+	
+	"inputmessage" is an input property
+	
+	<p appAlert [inputmessage]="'This is some message'"></p>
+	
+	If we need to pass a literal to input property using the property binding syntax use single quotes within double quotes
+	
+	<span appAlert="Hi">.....</span>
+		or
+	<span [appAlert]="Hi">....</span>
+	
+	we can create getter and setter in the directive class to make the above code work
+
+Creating a Custom Structural directive 
+--------------------------------------
+Objective :- Create a custom structural directive which repeats/clone an element for the specified number of times(similar to ngFor)
+
+Usage :-
+	<element *appRepeat="10"></element>
+	
+	<p *appRepeat="10">Hello</p>
+	
+	1.Create a directive 
+		
+		ng g d repeat --skip-tests
+	
+	2.Two thing needed for creating a structural directive 
+		a.ViewContainerRef
+		b.TemplateRef
+		
+	ViewContainerRef corresponds to a location in the DOM where the embedded view is created 
+	TemplateRef represents an embedded template 
+	
+	3.Inject the above service/classes in the constructor of the directive as private variables
+	
+	4.Create a setter and getter with the name appRepeat and decorate the setter with @Input decorator
+	
+	5.The logic to clone the elements will be inside the setter 
+	
+Pipes 
+-----
+Fromerly known as "filters" in AngularJS (1.x)
+A pipe allows you to pass some input and return the transformed value back
+
+input -----> PIPE(transform)------> TransformedData(OP)
+
+Many Built-In Pipes are available 
+	1.decimal
+	2.currency 
+	3.date 
+	4.json
+	5.uppercase
+	6.lowercase 
+	7.titlecase 
+	8.async (used with observables)
+	.
+	........
+	
+	Syntax :- Pipes are always used in templates
+	
+	{{ expression/input to the pipe | pipename }}
+	
+	{{ dob  | date }}
+	{{ price | currency }}
+	
+	Chaining of Pipes
+	
+	{{ expression/input | pipe1 | pipe2 |pipe3.... }}
+	
+Custom Pipe 
+-----------
+Create a custom pipe to get square of a number 
+
+	{{ 2 | square }}
+	
+1.Creat a class decorated with @Pipe() decorator, optionally implement the PipeTransform Interface
+
+2.Write the transformation logic inside the transform() method 
+
+3.Angular calls the transform() when the pipe is used
+
+	ng generate pipe <<pipename>>
+			or 
+	ng g p <<pipename>>
+	
+First argument to the transform() is the value of the left side of the pipe.
+Additional arguments can be passed as parameter to the transform() -- optional 
+
+Service 
+-------
+A Service is a TS class which contains logic that can be used by multiple component 
+
+	Example 
+		Authentication Logic
+		Authorization Logic
+		Logging Logic 
+		Data Access Logic 
+		
+A Service is a Singleton instance - Angular creates one instance of the service per application and the same instance is shared by all the component 
+
+A Service can be injected into components, directives, pipe using Angular's built-in dependency injection mechanism 
+
+Dependency Injection (DI) is a technique in which a class receives its dependencies from external source rather than creating them itself
+
+class Engine
+{
+	constructor (parameters){}
+}
+
+class Tires
+{
+	constructor (parameters) {}
+}
+
+Without DI 
+----------
+class Car{
+	engine;
+	tires;
+	
+	constructor()
+	{
+		this.engine = new Engine(arguments..)
+		thie.tires =  new Tires(arguments...)
+	}
+}
+
+With DI 
+-------
+class Car{
+	engine;
+	tires;
+	
+	constructor(engine,tires)
+	{
+		this.engine= engine;
+		this.tires = tires;
+	}
+}
+
+var myengine = new Engine(parameter)
+var mytire = new Tire(parameter)
+
+var mycar = new Car(myengine,mytire)
+
+HR Management System 
+--------------------
+Employee (Id,FirstName,LastName,Department...)
+
+	2 Components 
+		employee-list (contains id and first-name of the employee)
+		employee-details (display the detailed information of all the employee)
+		
+	ng generate service <<service-name>>
+			or 
+	ng g s <<service-name>>
+	
+	A service class is decorated with @Injectable() decorator 
+	
+	@Injectable() makes the service class injectable using the Angular's built-in DI
+	
+	The class automatically participates in Angular's DI mechanism 
+	
+In a real-time application, the data will come from an API or a web service 
+
+In Angular to interact with an api we make use of HTTPModule
+
+HTTPModule 
+
+	HttpClient - @angular/common/http
+	
+	-The ability to request typed response object 
+	-Error Handling 
+	-Testing 
+	-Request and Response interception 
+	
+	GET 
+	POST 
+	PUT 
+	PATCH 
+	DELETE 
+	
+What is an Observable?
+----------------------
+Observable is an asynchronous pattern
+
+In Observable pattern we have an Observable(Publisher) and a Observer.
+
+Observer observe the Observable
+In many implementation Observer is also called a Subscriber
+
+An Observable can have many subscribers 
+
+Observable emits items or notification over time to which a  subscriber can subscribe
+When a subscriber subscribes to an Observable, the subscriber also specifies a callback function to perform some action
+
+Routing 
+
+Angular Forms 
