@@ -1,0 +1,30 @@
+<div class="card">
+   <div class="card-header">
+    <h3>ngFor Demo</h3>
+   </div>
+
+   <div class="card-body">
+    <h4>List of People</h4>
+
+    <ul *ngFor="let person of people">
+      <li [ngStyle]="{'color':getColor(person.country)}">
+        {{person.name}} , {{person.country}}
+      </li>
+    </ul>
+
+    <hr>
+
+    <h4>List of People</h4>
+
+    <ul *ngFor="let person of people">
+      <li [ngClass]="{
+        'text-success':person.country==='UK',
+        'text-primary':person.country==='USA',
+        'text-danger':person.country==='INDIA'
+      }">
+        {{person.name}},{{person.country}}
+      </li>
+    </ul>
+
+   </div>
+</div>

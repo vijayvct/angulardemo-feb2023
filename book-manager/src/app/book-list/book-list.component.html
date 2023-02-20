@@ -1,0 +1,34 @@
+<div class="card">
+  <div class="card-header">
+    <h5>Book List Component</h5>
+    <span>Book with id {{id}} is Selected</span>
+  </div>
+
+  <!-- <div class="card-body">
+    <app-book (bookselection)="GetBookInfo($event)"
+              (bookobjectselection)="GetBook($event)"
+              [bookinfo]="books[0]"></app-book>
+
+    <app-book (bookselection)="GetBookInfo($event)"
+              (bookobjectselection)="GetBook($event)"
+              [bookinfo]="books[1]"></app-book>
+
+    <app-book (bookselection)="GetBookInfo($event)"
+              (bookobjectselection)="GetBook($event)"
+              [bookinfo]="books[2]"></app-book>
+  </div> -->
+
+  <button class="btn btn-primary" (click)="RefreshData()">
+    Refresh
+  </button>
+
+  <div class="card-body">
+    <app-book *ngFor="let b of books;let i=index;let o=odd;let e=even;trackBy:TrackBook"
+              appAlert
+              (bookselection)="GetBookInfo($event)"
+              (bookobjectselection)="GetBook($event)"
+              [bookinfo]="b" [bookindex]="i" [odd]="o" [even]="e">
+
+    </app-book>
+  </div>
+</div>

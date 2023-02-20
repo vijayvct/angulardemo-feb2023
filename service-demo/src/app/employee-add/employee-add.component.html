@@ -1,0 +1,24 @@
+<h3>Adding a new Employee</h3>
+<div>
+  <div>
+    <label>First Name</label>
+    <input type="text" [(ngModel)]="employee.firstName"/>
+  </div>
+  <br>
+  <div>
+    <label>Last Name</label>
+    <input type="text" [(ngModel)]="employee.lastName"/>
+  </div>
+  <br>
+  <div>
+    <label>Department</label>
+    <input type="text" [(ngModel)]="employee.department"/>
+  </div>
+  <br>
+  <div>
+    <label>Email</label>
+    <input type="text" [(ngModel)]="employee.email"/>
+  </div>
+  <br>
+  <button (click)="addEmployee()">Add Employee</button>
+</div>

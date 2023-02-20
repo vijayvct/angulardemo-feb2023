@@ -1,0 +1,29 @@
+<div class="card">
+  <div class="card-header" (mouseover)="GenerateNotification()">
+    <h5>Book Component</h5>
+  </div>
+
+  <div class="card-body">
+    <h6>
+      Book Index : {{ bookindex +1 }}
+    </h6>
+    <span>Odd : {{odd}}</span> <br>
+    <span>Even : {{even}}</span>
+    <p>
+      <span>Book Id : {{ bookinfo.bookid }} </span> <br>
+      <span>Book Name : {{ bookinfo.bookname }} </span> <br>
+      <span>Publisher : {{ bookinfo.publisher }} </span> <br>
+      <span>Author : {{ bookinfo.author }} </span> <br>
+      <span>Price : {{ bookinfo.price }} </span> <br>
+      <button class="btn btn-danger"
+              (click)="GenerateNotification()">
+        SELECT ID
+      </button>
+
+      <button class="btn btn-warning"
+              (click)="GenerateBookNotification()">
+          SELECT BOOK
+      </button>
+    </p>
+  </div>
+</div>

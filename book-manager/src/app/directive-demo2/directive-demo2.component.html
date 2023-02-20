@@ -1,0 +1,40 @@
+<div class="card">
+  <div class="card-header">
+    <h3>ngSwitch Demo</h3>
+  </div>
+
+  <div class="card-body">
+    Enter a number <input type="text" [(ngModel)]="num"/>
+
+    <br>
+
+    <div [ngSwitch]="num">
+      <div *ngSwitchCase="1">One</div>
+      <div *ngSwitchCase="2">Two</div>
+      <div *ngSwitchCase="3">Three</div>
+      <div *ngSwitchCase="4">Four</div>
+      <div *ngSwitchCase="5">Five</div>
+      <div *ngSwitchDefault="">This is Some Default Message</div>
+    </div>
+
+    <hr>
+
+   <h2>Select Country Code</h2>
+
+    <select (change)="setDropDownValue($event)">
+      <option value="">Select</option>
+      <option value="IN">India</option>
+      <option value="US">USA</option>
+      <option value="UK">UK</option>
+    </select>
+
+    <h2>You have selected</h2>
+
+    <div [ngSwitch]="dropdownValue">
+      <h3 *ngSwitchCase="'IN'">India</h3>
+      <h3 *ngSwitchCase="'US'">United States of America</h3>
+      <h3 *ngSwitchCase="'UK'">United Kindom</h3>
+      <h3 *ngSwitchDefault="">You have not selected any country</h3>
+    </div>
+  </div>
+</div>

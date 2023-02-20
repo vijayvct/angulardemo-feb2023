@@ -1,0 +1,65 @@
+<div class="card">
+  <div class="card-header">
+    <h1 style="text-align: center;">Data Binding Demo</h1>
+  </div>
+
+  <div class="card-body">
+
+    <p>
+      Employee Id : {{empid}}
+    </p>
+
+    <p>
+      Employee Name : {{name}}
+    </p>
+
+    <p>
+      Employee Details : {{ GetDetails() }}
+    </p>
+
+    <p>
+      <img src="{{ imagepath }}">
+    </p>
+
+    <p>
+      Employee ID : <input type="text" [(ngModel)]="empid"/>
+    </p>
+
+    <p>
+      Employee Name : <input type="text" [(ngModel)]="name"/>
+    </p>
+
+    <p>
+      Image Path : <input type="text" [(ngModel)]="imagepath"/>
+    </p>
+
+    <p>
+      City : <input type="text" id="txtcity" #city>
+    </p>
+    <br>
+
+    <button class="btn btn-primary" (click)="ChangeName()">
+      Change Name
+    </button>
+    <hr>
+    <button class="btn btn-primary"
+            on-click="clickMe()">
+      Click Me
+    </button>
+
+    <p>You have clicked {{ clickCount }}</p>
+    <hr>
+    <button id="btn1" class="btn btn-info" (click)="Change($event)">
+      Change Name
+    </button>
+    <button id="btn2" class="btn btn-info" (click)="Change($event)">
+      Change ID
+    </button>
+
+    <hr>
+    <button class="btn btn-warning"
+            (click)="ProcessEmployeeInfo(city.value)">
+      Process Employee Information
+    </button>
+  </div>
+</div>
